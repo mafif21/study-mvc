@@ -39,4 +39,20 @@
         exit;
       }
     }
+
+    public function getUbah(){
+      echo json_encode($this->model('mahasiswa_model')->getMahasiswaById($_POST['id']));
+    }
+
+    public function ubah(){
+      if( $this->model('mahasiswa_model')->ubahDataMahasiswa($_POST) > 0 ){
+        Flasher::setFlash('berhasil', 'diubah', 'success');
+        header("Location: ". BASEURL . '/mahasiswa');
+        exit;
+      }else{
+        Flasher::setFlash('gagal', 'diubah', 'danger');
+        header("Location: ". BASEURL . '/mahasiswa');
+        exit;
+      }
+    }
   }
